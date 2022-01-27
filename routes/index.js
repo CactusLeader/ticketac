@@ -21,4 +21,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET search page. */
+router.get('/search', function(req, res, next) {
+  res.render('search');
+});
+
 module.exports = router;
