@@ -27,6 +27,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/oops', function(req, res, next) {
+
+  console.log('/oops')
+
+  res.render('oops', { title: 'Express' });
+});
+
 
 router.post('/sign-up', async function(req, res, next) {
 
@@ -100,12 +107,14 @@ router.post('/search-train', async function(req, res, next){
   dateWanted = Date.parse(dateWanted);
   dateWanted = new Date(dateWanted)
 
+  var journeyExist = null
+
   var journeyExist = await journeyModel.find({departure: req.body.departure, arrival: req.body.arrival, date: dateWanted});
 
   console.log('journeyExist',journeyExist)
 
-  if(journeyExist == []){
-    res.render('/oops')
+  if(journeyExist.length === 0){
+    res.redirect('/oops')
   }
 
   res.render('available', {journeyExist})
