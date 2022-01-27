@@ -87,4 +87,22 @@ router.get('/search', function(req, res, next) {
   res.render('search');
 });
 
+
+router.post('/available', async function(req, res, next){
+
+  var dateWanted = req.body.meetingTime;
+  dateWanted = Date.parse(dateWanted);
+  dateWanted = new Date(dateWanted)
+
+  var journeyExist = await journeyModel.find({departure: req.body.departure, arrival: req.body.arrival, date: dateWanted});
+
+  console.log('journeyExist',journeyExist)
+
+  if(journeyExist == []){
+    res.render('/oops')
+  }
+
+  res.render('available', {journeyExist})
+});
+
 module.exports = router;
