@@ -62,3 +62,7 @@ input {
   margin-right: 2vh;
   font-family: 'Open Sans', sans-serif;
 }
+
+.card-body {
+  padding: 0px;
+}
