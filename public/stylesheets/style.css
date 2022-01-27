@@ -37,3 +37,7 @@ html {
 .color-autre{
   color: rgb(216, 216, 216);
 }
+
+.monument {
+  margin: 100px;
+}
