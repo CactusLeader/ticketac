@@ -5,6 +5,11 @@
     <title>Ticketac</title>
     <!-- To add in order to scale the view for mobiles -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../stylesheets/style.css">
   </head>
@@ -15,16 +20,16 @@
 
 
       <!-- Zone Sign In / Sign Up -->
-      <div class="home">
+      <div class="container-fluid home">
 
-        <div class="row">
+        <div class="row justify-content-center">
 
           <!-- SIGN IN -->
-          <div class="col-10 col-sm-4 offset-1 offset-sm-2 text-center">
+          <div class="col-10 col-sm-4 text-center">
 
             <div class="formArea">
 
-              <h4 class="titleForm color-autre">Sign In</h4>
+              <h4 class="title-form color-autre">Sign In :</h4>
 
               <form action="/sign-in" method="POST">
                 <div class="form-group">
@@ -46,7 +51,7 @@
           <div class="col-10 col-sm-4 text-center">
 
             <div class="formArea">
-              <h4 class="titleForm color-autre">Sign Up</h4>
+              <h4 class="title-form color-autre">Sign Up :</h4>
 
               <form action="/sign-up" method="POST">
                 <div class="form-group">
