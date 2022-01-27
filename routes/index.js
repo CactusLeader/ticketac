@@ -35,14 +35,76 @@ var journeyModel = mongoose.model('journey', journeySchema);
 var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"]
 var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 
+var userModel = require('../models/users')
+
 
 
 /* GET home page. */
+
 router.get('/', function(req, res, next) {
 
-  
+  console.log('/')
 
   res.render('index', { title: 'Express' });
+});
+
+
+router.post('/sign-up', async function(req, res, next) {
+
+  console.log('/sign-up');
+
+  var searchUser = await userModel.findOne({
+    email: req.body.emailFromFront
+  })
+  
+  if(!searchUser){
+    var newUser = new userModel({
+      name: req.body.nameFromFront,
+      firstname: req.body.firstnameFromFront,
+      email: req.body.emailFromFront,
+      password: req.body.passwordFromFront,
+    })
+  
+    var newUserSave = await newUser.save();
+  
+    req.session.user = {
+      email: newUserSave.email,
+      id: newUserSave._id,
+    }
+  
+    console.log(req.session.user)
+  
+    res.redirect('/search')
+  } else {
+    res.redirect('/')
+  }
+
+  res.render('index', { title: 'Express' });
+});
+
+router.post('/sign-in', async function(req,res,next){
+
+  console.log('/sign-in')
+
+  var searchUser = await userModel.findOne({
+    email: req.body.emailFromFront,
+    password: req.body.passwordFromFront
+  })
+
+  if(searchUser!= null){
+    req.session.user = {
+      email: searchUser.email,
+      id: searchUser._id
+    }
+    res.redirect('/search')
+  } else {
+    res.render('index')
+  }
+
+});
+
+router.get('/search', function(req, res, next) {
+  res.render('search', { title: 'Express' });
 });
 
 
