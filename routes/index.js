@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const mongoose = require('mongoose');
+var userModel = require('../models/users')
 
 var journeySchema = mongoose.Schema({
   departure: String,
@@ -16,7 +17,6 @@ var journeyModel = mongoose.model('journey', journeySchema);
 var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"]
 var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 
-var userModel = require('../models/users')
 
 /* GET home page. */
 
@@ -81,6 +81,12 @@ router.post('/sign-in', async function(req,res,next){
   }
 
 });
+
+/* GET Last trip page */
+router.get('/trip', function(req, res, next) {
+
+  res.render('trip');
+})
 
 /* GET search page. */
 router.get('/search', function(req, res, next) {
