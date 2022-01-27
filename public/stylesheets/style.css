@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
   background: #1e5799; /* Old browsers */
@@ -11,4 +10,30 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.home{
+  padding-top: 50px;
+}
+
+.form-group{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.color-red{
+  color: red;
+}
+
+.color-black{
+  color: black;
+}
+
+.color-autre{
+  color: rgb(216, 216, 216);
 }
