@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <% totalCmd = 0 %>
+                        <% let totalCmd = 0 %>
                         <% for (let i = 0; i < dataTrain.length; i++) { %>
                         <% let numero = 1; %>
                         <tr>
@@ -86,7 +86,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% totalCmd = 0 %>
+                                    <% 
+                                    totalCmd = 0; 
+                                    let trainIds = [];
+                                    %>
                                     <% for (let i = 0; i < dataTrain.length; i++) { %>
                                     <% let numero = 1; %>
                                     <tr>
@@ -97,6 +100,7 @@
                                         <td><%= dataTrain[i].price %>€</td>
                                     </tr>
                                     <% totalCmd += Number(dataTrain[i].price) %>
+                                    <% trainIds.push(dataTrain[i].idtrain)%>
                                     <% } %>
                                 </tbody>
                                 <tr>
@@ -105,9 +109,10 @@
                                 </tr>
                             </table>
                         </div>
+                        <% trainIds = JSON.stringify(trainIds) %>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modifier</button>
-                            <button type="button" class="btn btn-danger" type="submit"><a href="/">Valider</a></button>
+                            <button type="button" class="btn btn-danger" type="submit"><a href="/confirmation?idtrain=<%=trainIds%>">Valider</a></button>
                         </div>
                     </div>
                     </div>
