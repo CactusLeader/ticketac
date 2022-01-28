@@ -46,7 +46,7 @@
                         <tr>
                             <td><%= numero + i %></td>
                             <td><%= dataTrain[i].departure %> / <%= dataTrain[i].arrival %></td>
-                            <td><%= dataTrain[i].date %></td>
+                            <td><%= dateFormat(dataTrain[i].date) %></td>
                             <td><%= dataTrain[i].departureTime %></td>
                             <td><%= dataTrain[i].price %>€</td>
                         </tr>
@@ -95,7 +95,7 @@
                                 <tr>
                                     <td><%= numero + i %></td>
                                     <td><%= dataTrain[i].departure %> / <%= dataTrain[i].arrival %></td>
-                                    <td><%= dataTrain[i].date %></td>
+                                    <td><%= dateFormat(dataTrain[i].date) %></td>
                                     <td><%= dataTrain[i].departureTime %></td>
                                     <td><%= dataTrain[i].price %>€</td>
                                 </tr>

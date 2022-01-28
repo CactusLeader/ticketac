@@ -88,16 +88,29 @@ router.post('/sign-in', async function(req,res,next){
 /* GET Last trip page */
 router.get('/trip', function(req, res, next) {
 
+  if (req.session.user === null) {
+    res.redirect('/')
+  }
+
   res.render('trip');
 })
 
 /* GET search page. */
 router.get('/search', function(req, res, next) {
+
+  if (req.session.user === null) {
+    res.redirect('/')
+  }
+
   res.render('search');
 });
 
 /* POST Search train availibility */
 router.post('/search-train', async function(req, res, next){
+
+  if (req.session.user === null) {
+    res.redirect('/')
+  }
 
   var dateWanted = req.body.meetingTime;
   dateWanted = Date.parse(dateWanted);
@@ -118,8 +131,12 @@ router.post('/search-train', async function(req, res, next){
 
 router.get('/shop', function(req, res, next) {
 
+  if (req.session.user === null) {
+    res.redirect('/')
+  }
+
   console.log('/shop');
-  console.log('req.query',req.query.price)
+  console.log('req.query',req.query.date)
 
   let alreadyExist = false;
 
@@ -143,5 +160,12 @@ router.get('/shop', function(req, res, next) {
 
   res.render('shop', {dataTrain: req.session.dataTrain});
 })
+
+router.get('/logout', function(req,res,next){
+
+  req.session.user = null;
+
+  res.redirect('/')
+});
 
 module.exports = router;

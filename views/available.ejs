@@ -28,7 +28,7 @@
                 </div>
         
         <% for(let i = 0; i < journeyExist.length; i++) { %>
-            <div class="col-6">
+            <div class="col-6 my-1">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div class="voyage">    
@@ -43,7 +43,7 @@
                         </div>
                         <div>            
                             <div class="input-group">
-                                    <button class="btn btn-danger" type="submit" id="button-addon2"><a class="nounderline" href="/shop?price=<%= journeyExist[i].price %>&departure=<%= journeyExist[i].departure %>&arrival=<%= journeyExist[i].arrival %>&date=<%= journeyExist[i].arrival %>&idtrain=<%= journeyExist[i]._id %>&departureTime=<%= journeyExist[i].departureTime %>">OK</a></button>
+                                    <button class="btn btn-danger" type="submit" id="button-addon2"><a class="nounderline" href="/shop?price=<%= journeyExist[i].price %>&departure=<%= journeyExist[i].departure %>&arrival=<%= journeyExist[i].arrival %>&date=<%= journeyExist[i].date %>&idtrain=<%= journeyExist[i]._id %>&departureTime=<%= journeyExist[i].departureTime %>">OK</a></button>
                             </div>
                         </div> 
                     </div>
