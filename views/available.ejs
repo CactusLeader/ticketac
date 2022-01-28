@@ -22,17 +22,14 @@
         
         <% for(let i = 0; i < journeyExist.length; i++) { %>
             <div class="col-10">
-                <p>
-                    <%= journeyExist[i].departure %>/<%= journeyExist[i].arrival %>                 
-                    train depature at: <%= journeyExist[i].date %>                
-                    <%= journeyExist[i].price %> €                 
-                    <form action="/" >
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <button class="btn btn-danger" type="submit" id="button-addon2">OK</button>
-                            </div>
-                        </div>
-                    </form>
+                <%= journeyExist[i].departure %>/<%= journeyExist[i].arrival %>                 
+                train depature at: <%= journeyExist[i].date %>                
+                <%= journeyExist[i].price %> €                 
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <button class="btn btn-danger" type="submit" id="button-addon2"><a href="/shop?price=<%= journeyExist[i].price %>&departure=<%= journeyExist[i].departure %>&arrival=<%= journeyExist[i].arrival %>&date=<%= journeyExist[i].arrival %>&idtrain=<%= journeyExist[i]._id %>&departureTime=<%= journeyExist[i].departureTime %>">OK</a></button>
+                    </div>
+                </div>
             </div>
         <% } %>
 
