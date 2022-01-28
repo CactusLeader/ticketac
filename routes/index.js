@@ -1,25 +1,15 @@
 var express = require('express');
 var router = express.Router();
-
 const mongoose = require('mongoose');
-var userModel = require('../models/users')
 
-var journeySchema = mongoose.Schema({
-  departure: String,
-  arrival: String,
-  date: Date,
-  departureTime: String,
-  price: Number,
-});
+var userModel = require('../models/users');
+const journeyModel = require('../models/journeys');
 
-var journeyModel = mongoose.model('journey', journeySchema);
-
-var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"]
-var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
+var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"];
+var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"];
 
 
 /* GET home page. */
-
 router.get('/', function(req, res, next) {
 
   console.log('/')
@@ -27,6 +17,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET No train available page */
 router.get('/oops', function(req, res, next) {
 
   console.log('/oops')
@@ -34,7 +25,7 @@ router.get('/oops', function(req, res, next) {
   res.render('oops', { title: 'Express' });
 });
 
-
+/* POST Sign-up */
 router.post('/sign-up', async function(req, res, next) {
 
   console.log('/sign-up');
@@ -68,6 +59,7 @@ router.post('/sign-up', async function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* POST Sign-in */
 router.post('/sign-in', async function(req,res,next){
 
   console.log('/sign-in')
@@ -100,6 +92,7 @@ router.get('/search', function(req, res, next) {
   res.render('search');
 });
 
+/* POST Search train availibility */
 router.post('/search-train', async function(req, res, next){
 
   var dateWanted = req.body.meetingTime;
