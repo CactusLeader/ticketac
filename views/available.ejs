@@ -42,11 +42,9 @@
                             <%= journeyExist[i].price %> €
                         </div>
                         <div>            
-                            <form action="/" >
-                                <div class="input-group">
-                                        <button class="btn btn-danger" type="submit" id="button-addon2">OK</button>
-                                </div>
-                            </form>
+                            <div class="input-group">
+                                    <button class="btn btn-danger" type="submit" id="button-addon2"><a href="/shop?price=<%= journeyExist[i].price %>&departure=<%= journeyExist[i].departure %>&arrival=<%= journeyExist[i].arrival %>&date=<%= journeyExist[i].arrival %>&idtrain=<%= journeyExist[i]._id %>&departureTime=<%= journeyExist[i].departureTime %>">OK</a></button>
+                            </div>
                         </div> 
                     </div>
                     </li>

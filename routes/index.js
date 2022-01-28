@@ -14,6 +14,10 @@ router.get('/', function(req, res, next) {
 
   console.log('/')
 
+  if(req.session.dataTrain == undefined){
+    req.session.dataTrain = []
+  }
+
   res.render('index', { title: 'Express' });
 });
 
@@ -111,5 +115,33 @@ router.post('/search-train', async function(req, res, next){
 
   res.render('available', {journeyExist})
 });
+
+router.get('/shop', function(req, res, next) {
+
+  console.log('/shop');
+  console.log('req.query',req.query.price)
+
+  let alreadyExist = false;
+
+  for(var i = 0; i< req.session.dataTrain.length; i++){
+    if(req.session.dataTrain[i].idtrain == req.query.idtrain){
+      alreadyExist = true;
+    }
+  }
+
+  if(alreadyExist == false){
+    req.session.dataTrain.push({
+      price: req.query.price,
+      departure: req.query.departure,
+      arrival: req.query.arrival,
+      date: req.query.date,
+      idtrain: req.query.idtrain,
+      departureTime: req.query.departureTime,
+    })
+  }
+
+
+  res.render('shop', {dataTrain: req.session.dataTrain});
+})
 
 module.exports = router;
