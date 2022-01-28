@@ -20,6 +20,7 @@
     <!-- Fin du header -->
 
     <div class="container-fluid">
+
     <div class= "row justify-content-center">
         <div class='row d-flex flex-column align-items-center'>
             <div class="col-4 uptext">
@@ -40,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% totalCmd = 0 %>
+                        <% let totalCmd = 0 %>
                         <% for (let i = 0; i < dataTrain.length; i++) { %>
                         <% let numero = 1; %>
                         <tr>
@@ -72,53 +73,59 @@
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Résumé de commande</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table id="product-list" class="table table-bordered table-info" width="100%" cellspacing="0">
-                            <thead>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Résumé de commande</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table id="product-list" class="table table-bordered table-info" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Journey</th>
+                                        <th>Date</th>
+                                        <th>Departure Time</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% totalCmd = 0;
+                                    let trainIds = []; %>
+                                    <% for (let i = 0; i < dataTrain.length; i++) { %>
+                                    <% let numero = 1; %>
+                                    <tr>
+                                        <td><%= numero + i %></td>
+                                        <td><%= dataTrain[i].departure %> / <%= dataTrain[i].arrival %></td>
+                                        <td><%= dateFormat(dataTrain[i].date) %></td>
+                                        <td><%= dataTrain[i].departureTime %></td>
+                                        <td><%= dataTrain[i].price %>€</td>
+                                    </tr>
+                                    <% totalCmd += Number(dataTrain[i].price);
+                                    trainIds.push(dataTrain[i].idtrain) %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                            <table class="table table-danger table-info" width="100%" cellspacing="0">
                                 <tr>
-                                    <th>N°</th>
-                                    <th>Journey</th>
-                                    <th>Date</th>
-                                    <th>Departure Time</th>
-                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th class="right"><%= totalCmd %>€</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <% totalCmd = 0 %>
-                                <% for (let i = 0; i < dataTrain.length; i++) { %>
-                                <% let numero = 1; %>
-                                <tr>
-                                    <td><%= numero + i %></td>
-                                    <td><%= dataTrain[i].departure %> / <%= dataTrain[i].arrival %></td>
-                                    <td><%= dateFormat(dataTrain[i].date) %></td>
-                                    <td><%= dataTrain[i].departureTime %></td>
-                                    <td><%= dataTrain[i].price %>€</td>
-                                </tr>
-                                <% totalCmd += Number(dataTrain[i].price) %>
-                                <% } %>
-                            </tbody>
-                        </table>
-                        <table class="table table-danger table-info" width="100%" cellspacing="0">
-                            <tr>
-                                <th>Total</th>
-                                <th class="right"><%= totalCmd %>€</th>
-                            </tr>
-                        </table>
+                            </table>
+                        </div>
+                        <div>
+                            <% trainIds = JSON.stringify(trainIds) %>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modifier</button>
+                                <button type="button" class="btn btn-danger" type="submit"><a href="/confirmation?idtrain=<%=trainIds%>">Valider</a></button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modifier</button>
-                        <button type="button" class="btn btn-danger" type="submit"><a href="/" class="nounderline">Valider</a></button>
-                    </div>
-                </div>
                 </div>
             </div>
         </div> 
-    </div>   
+    </div>  
+
     </div>
     
 

@@ -50,11 +50,9 @@ router.post('/sign-up', async function(req, res, next) {
   
     req.session.user = {
       email: newUserSave.email,
-      id: newUserSave._id,
+      userId: newUserSave._id,
     }
-  
-    console.log(req.session.user)
-  
+    
     res.redirect('/search')
   } else {
     res.redirect('/')
@@ -76,24 +74,15 @@ router.post('/sign-in', async function(req,res,next){
   if(searchUser!= null){
     req.session.user = {
       email: searchUser.email,
-      id: searchUser._id
+      userId: searchUser._id
     }
+
     res.redirect('/search')
   } else {
     res.render('index')
   }
 
 });
-
-/* GET Last trip page */
-router.get('/trip', function(req, res, next) {
-
-  if (req.session.user === null) {
-    res.redirect('/')
-  }
-
-  res.render('trip');
-})
 
 /* GET search page. */
 router.get('/search', function(req, res, next) {
@@ -129,6 +118,7 @@ router.post('/search-train', async function(req, res, next){
   res.render('available', {journeyExist})
 });
 
+/* GET Shop page */
 router.get('/shop', function(req, res, next) {
 
   if (req.session.user === null) {
@@ -167,5 +157,30 @@ router.get('/logout', function(req,res,next){
 
   res.redirect('/')
 });
+/* GET confirmation */
+router.get('/confirmation', async function (req, res, next) {
+
+  const idTrain = JSON.parse(req.query.idtrain);
+
+  const userUpdate = await userModel.updateOne(
+    {_id: req.session.user.userId},
+    { $addToSet: {train: idTrain} }
+  );
+
+  res.render('index');
+})
+
+/* GET Last trip page */
+router.get('/trip', async function(req, res, next) {
+
+  if (req.session.user === null) {
+    res.redirect('/')
+  }
+
+  const user = await userModel.findOne({_id: req.session.user.userId});
+  let train = await journeyModel.find({_id: user.train});
+
+  res.render('trip', {user, train});
+})
 
 module.exports = router;

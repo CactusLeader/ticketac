@@ -28,10 +28,11 @@
             </div>
         </div>
 
-        <div class="card mb-3">
+        <div class="row justify-content-center">
+          <div class="card col-8">
             <div class="card-body">
               <div class="table-responsive">
-                <table id="product-list" class="table table-bordered" width="100%" cellspacing="0">
+                <table id="product-list" class="table table-borderless" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>N°</th>
@@ -42,16 +43,27 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <% for (let i = 0; i < train.length; i++) { %>
                       <tr>
-                        <td>1</td>
-                        <td>Paris / Lille</td>
-                        <td>18/11/2018</td>
-                        <td>15:00 pm</td>
-                        <td>93€</td>
+                        <td><%= i + 1 %></td>
+                        <td><%= train[i].departure %> / <%= train[i].arrival %></td>
+                        <td><%= dateFormat(train[i].date) %></td>
+                        <td><%= train[i].departureTime %></td>
+                        <td><%= train[i].price %>€</td>
                       </tr>  
-                    </tbody>
+                    <% } %>
+                  </tbody>
                 </table>
-    </div>
+              </div>  
+            </div>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end col-8 my-2">
+            <button type="submit" class="btn btn-danger"><a href="/" class="nounderline">
+                Home
+            </a></button>
+        </div>
+
+      </div>
 
 
     <!-- footer -->
