@@ -121,7 +121,7 @@ router.post('/search-train', async function(req, res, next){
 /* GET Shop page */
 router.get('/shop', function(req, res, next) {
 
-  if (req.session.user === null) {
+  if (!req.session.user) {
     res.redirect('/')
   }
 
@@ -168,19 +168,18 @@ router.get('/confirmation', async function (req, res, next) {
   );
 
   res.render('index');
-})
+});
 
 /* GET Last trip page */
 router.get('/trip', async function(req, res, next) {
 
-  if (req.session.user === null) {
+  if (!req.session.user) {
     res.redirect('/')
-  }
-
+  } else {
   const user = await userModel.findOne({_id: req.session.user.userId});
   let train = await journeyModel.find({_id: user.train});
-
   res.render('trip', {user, train});
-})
+  };
+});
 
 module.exports = router;
