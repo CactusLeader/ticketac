@@ -22,6 +22,13 @@ html {
   padding-top: 50px;
 }
 
+.sticky-footer {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0%;
+  left: auto;
+}
+
 .form-group{
   padding-bottom: 2vh;
 }
