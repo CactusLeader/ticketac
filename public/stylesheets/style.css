@@ -92,3 +92,16 @@ input {
   margin-left: 2vh;
   margin-right: 1vh;
 }
+
+a.nounderline:link { 
+  text-decoration:none;
+  color: white;
+} 
+
+.right {
+  text-align: right;
+}
+
+.red {
+  background-color: rgb(245, 114, 114);
+}
