@@ -14,6 +14,19 @@ var session = require("express-session")
 
 var app = express();
 
+// Date format
+app.locals.dateFormat = function(date){
+  const newDate = new Date(date);
+  const format = newDate.getDate()+'/'+(newDate.getMonth()+1)+'/'+newDate.getFullYear();
+  return format;
+}
+
+// app.locals.dateFormatHour = function(date){
+//   const newDate = new Date(date);
+//   const format = newDate.get;
+// }
+
+// Session utilisateur
 app.use( 
   session({  
     secret: 'a4f8071f-c873-4447-8ee2', 
@@ -21,7 +34,6 @@ app.use(
     saveUninitialized: false,
    }) 
 );
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

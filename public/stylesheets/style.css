@@ -66,3 +66,20 @@ input {
 .card-body {
   padding: 0px;
 }
+
+.voyage {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: medium;
+}
+
+.price {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: large;
+}
+
+.input-group {
+  margin-left: 2vh;
+  margin-right: 1vh;
+}
